@@ -8,15 +8,16 @@
     "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
     "react-scripts": "1.1.1",
     "styled-components": "3.2.5"
   },
- "lint-staged": {
-   "src/**/*.{js,jsx,json,css,scss}": [
-     "prettier --single-quote --write",
-     "git add"
-   ]
- },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css,scss}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-scripts start",
