@@ -1,4 +1,4 @@
-TRELLO CLONE WITH REACT.js
+Приложение РЕЗЮМЕ WITH REACT.js
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
