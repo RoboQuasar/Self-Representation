@@ -8,3 +8,8 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+section {
+  border-radius: 18px;
+  box-shadow: 0 4px 25px -3px #000;
+}
