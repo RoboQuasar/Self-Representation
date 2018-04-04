@@ -9,7 +9,7 @@ export class AboutPerson extends React.PureComponent {
   render() {
     return (
       <AboutPersonWrapper>
-        <SectionTitle>О себе</SectionTitle>
+        <SectionTitle type="text" value="О себе" name="about-title" />
         <TextArea
           name="about-person-text"
           value="В феврале 2017-го года получил высшее образование в НИЯУ МИФИ.

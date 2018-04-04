@@ -6,7 +6,6 @@ const SkillsWrapper = styled.section`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  min-width: 500px;
   width: 60%;
   padding: 2% 2% 3%;
   background-color: #fff;

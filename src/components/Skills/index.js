@@ -11,7 +11,11 @@ export class Skills extends React.PureComponent {
   render() {
     return (
       <SkillsWrapper>
-        <SectionTitle>Профессиональные навыки</SectionTitle>
+        <SectionTitle
+          type="text"
+          value="Профессиональные навыки"
+          name="skills-title"
+        />
         <SkillItem>
           <Image src="html5_logo.png" />
         </SkillItem>
