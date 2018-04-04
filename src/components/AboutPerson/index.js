@@ -1,14 +1,15 @@
 import React from 'react';
 
+import SectionTitle from 'components/SectionTitle';
+
 import AboutPersonWrapper from './AboutPersonWrapper';
-import Title from './Title';
 import TextArea from './TextArea';
 
 export class AboutPerson extends React.PureComponent {
   render() {
     return (
       <AboutPersonWrapper>
-        <Title>О себе</Title>
+        <SectionTitle>О себе</SectionTitle>
         <TextArea
           name="about-person-text"
           value="В феврале 2017-го года получил высшее образование в НИЯУ МИФИ.

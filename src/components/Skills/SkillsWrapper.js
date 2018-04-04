@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
 const SkillsWrapper = styled.section`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 500px;
   width: 60%;
+  padding: 2% 2% 3%;
   background-color: #fff;
 `;
 
