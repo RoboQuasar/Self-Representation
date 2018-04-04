@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Avatar from 'components/Avatar';
 import PersonalInfo from 'components/PersonalInfo';
 import Contacts from 'components/Contacts';
