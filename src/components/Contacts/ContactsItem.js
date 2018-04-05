@@ -8,6 +8,7 @@ const ContactsItem = styled.li`
 
   &:before {
     display: block;
+    flex-shrink: 0;
     height: ${props => props.imageHeight};
     width: 27px;
     margin-right: 10px;
