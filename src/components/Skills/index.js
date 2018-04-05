@@ -12,10 +12,10 @@ export class Skills extends React.PureComponent {
     return (
       <SkillsWrapper>
         <SectionTitle
-          type="text"
-          value="Профессиональные навыки"
-          name="skills-title"
+          defaultTitleValue="Профессиональные навыки"
+          titleName="skills-title"
         />
+
         <SkillItem>
           <Image src="html5_logo.png" />
         </SkillItem>

@@ -9,7 +9,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   height: 200px;
   max-height: 200px;
-  padding: 0 10%;
+  padding: 0 5%;
   background: ${COLORS.astral};
 `;
 

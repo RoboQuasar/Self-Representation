@@ -7,7 +7,7 @@ const SkillsWrapper = styled.section`
   align-items: center;
   justify-content: space-around;
   width: 60%;
-  padding: 2% 2% 3%;
+  padding: 1% 2% 3%;
   background-color: #fff;
 `;
 

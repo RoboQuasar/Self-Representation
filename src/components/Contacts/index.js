@@ -52,8 +52,8 @@ export class Contacts extends React.PureComponent {
             <ContactInput
               type="text"
               defaultValue={this.state.defaultPhoneValue}
-              innerRef={n => {
-                this.phone = n;
+              innerRef={p => {
+                this.phone = p;
               }}
               name="phone-input"
               maxLength="30"
@@ -70,8 +70,8 @@ export class Contacts extends React.PureComponent {
             <ContactInput
               type="text"
               defaultValue={this.state.defaultMailValue}
-              innerRef={n => {
-                this.mail = n;
+              innerRef={m => {
+                this.mail = m;
               }}
               name="mail-input"
               maxLength="30"
@@ -88,8 +88,8 @@ export class Contacts extends React.PureComponent {
             <ContactInput
               type="text"
               defaultValue={this.state.defaultSkypeValue}
-              innerRef={n => {
-                this.skype = n;
+              innerRef={s => {
+                this.skype = s;
               }}
               name="skype-input"
               maxLength="30"

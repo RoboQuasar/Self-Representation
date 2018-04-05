@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const EditButton = styled.button`
   position: absolute;
-  right: 0;
+  right: ${props => (props.right ? props.right : '0')};
   top: ${props => props.top};
   width: 23px;
   height: 23px;
@@ -10,7 +10,8 @@ const EditButton = styled.button`
   margin: 0;
   border: none;
   border-radius: 50%;
-  background: url(pencil.png) no-repeat center center, white;
+  background: url(pencil.png) no-repeat center center,
+    ${props => (props.backgroundColor ? props.backgroundColor : 'white')};
   background-size: 70% 70%;
   cursor: pointer;
   transition: trransform 0.5s;

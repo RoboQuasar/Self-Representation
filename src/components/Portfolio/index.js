@@ -14,7 +14,11 @@ export class Portfolio extends React.PureComponent {
   render() {
     return (
       <PortfolioWrapper>
-        <SectionTitle type="text" value="Портфолио" name="portfolio-title" />
+        <SectionTitle
+          defaultTitleValue="Портфолио"
+          titleName="portfolio-title"
+          maxLengthValue="50"
+        />
 
         <PortfolioItem>
           <a
