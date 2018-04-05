@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const TextInput = styled.input`
+  width: 100%;
   padding: 0;
   margin: 0;
   font: bolder 30px sans-serif;

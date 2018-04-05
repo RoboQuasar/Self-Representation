@@ -6,6 +6,7 @@ const PortfolioWrapper = styled.section`
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 30px;
   padding: 2% 2%;
   background-color: #fff;
 `;
