@@ -7,13 +7,25 @@ import NavigationItem from './NavigationItem';
 import AuthButton from './AuthButton';
 
 export class Menu extends React.PureComponent {
+  state = {
+    isAuthOpen: false
+  };
+
+  handleAuthButtonClick = () => this.setState({ isAuthOpen: true });
+
+  handleAuthClose = () => this.setState({ isAuthOpen: false });
+
   render() {
     return (
       <Navigation>
         <NavigationItem href="#">навыки</NavigationItem>
         <NavigationItem href="#">портфолио</NavigationItem>
-        <AuthButton>Личный профиль</AuthButton>
-        <Auth />
+
+        <AuthButton onClick={this.handleAuthButtonClick}>
+          Личный профиль
+        </AuthButton>
+
+        {this.state.isAuthOpen && <Auth onClose={this.handleAuthClose} />}
       </Navigation>
     );
   }
