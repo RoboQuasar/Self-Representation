@@ -7,21 +7,28 @@ import EditPostButton from 'components/EditButton';
 import PersonalInfoWrapper from './PersonalInfoWrapper';
 import PostInput from './PostInput';
 
-class PersonalInfo extends React.PureComponent {
-  name = React.createRef();
-  post = React.createRef();
-
+export class PersonalInfo extends React.PureComponent {
   state = {
-    nameValue: 'Синеоков Роман',
-    postValue: 'Front-end developer'
+    defaultNameValue: 'Синеоков Роман',
+    defaultPostValue: 'Front-end developer',
+    isNameNotEditable: true,
+    isPostNotEditable: true
   };
 
-  handleEditNameText = () => {
-    this.name.focus();
+  handleEditNameClick = () => {
+    this.setState({ isNameNotEditable: false }, () => this.name.focus());
   };
 
-  handleEditPostText = () => {
-    this.post.focus();
+  handleEditPostClick = () => {
+    this.setState({ isPostNotEditable: false }, () => this.post.focus());
+  };
+
+  handleInputBlur = e => {
+    if (e.target.value === '') e.target.value = e.target.defaultValue;
+    this.setState({
+      isNameNotEditable: true,
+      isPostNotEditable: true
+    });
   };
 
   render() {
@@ -29,30 +36,38 @@ class PersonalInfo extends React.PureComponent {
       <PersonalInfoWrapper>
         <NameInput
           type="text"
-          value={this.state.nameValue}
+          defaultValue={this.state.defaultNameValue}
           name="name-input"
           maxLength="20"
-          ref={this.name}
+          innerRef={n => {
+            this.name = n;
+          }}
+          disabled={this.state.isNameNotEditable}
+          onBlur={this.handleInputBlur}
         />
         <EditNameButton
           type="button"
           name="edit-name"
           top="0"
-          onClick={this.handleEditNameText}
+          onClick={this.handleEditNameClick}
         />
 
         <PostInput
           type="text"
-          value={this.state.postValue}
+          defaultValue={this.state.defaultPostValue}
           name="post-input"
           maxLength="30"
-          ref={this.post}
+          innerRef={p => {
+            this.post = p;
+          }}
+          disabled={this.state.isPostNotEditable}
+          onBlur={this.handleInputBlur}
         />
         <EditPostButton
           type="button"
           name="edit-post"
           top="50%"
-          onClick={this.handleEditPostText}
+          onClick={this.handleEditPostClick}
         />
       </PersonalInfoWrapper>
     );
