@@ -2,7 +2,9 @@
   "name": "react-create-app-hello",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://roboquasar.github.io/Self-Representation/",
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.2",
     "prettier": "^1.11.1",
@@ -30,6 +32,8 @@
     "eject": "react-scripts eject",
     "start-rewired": "react-app-rewired start",
     "build-rewired": "react-app-rewired build",
-    "test-rewired": "react-app-rewired test --env=jsdom"
+    "test-rewired": "react-app-rewired test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
