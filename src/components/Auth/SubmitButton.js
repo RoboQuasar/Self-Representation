@@ -1,4 +1,4 @@
-import AuthButton from 'components/Menu/AuthButton';
+import AuthButton from 'containers/Menu/AuthButton';
 
 const SubmitButton = AuthButton.extend`
   display: block;
