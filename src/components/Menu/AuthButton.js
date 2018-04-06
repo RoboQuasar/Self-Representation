@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const AuthButton = styled.button`
-  width: 80%;
   padding: 10px 15px;
   margin: 10px auto 0;
   font: normal 11px Helvetica;

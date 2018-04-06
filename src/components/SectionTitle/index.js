@@ -13,7 +13,7 @@ export class SectionTitle extends React.PureComponent {
 
   handleEditTitleClick = () => {
     this.setState({ isTitleNotEditable: false }, () => this.title.focus());
-    this.props.editButtonClick();
+    this.props.editButtonClick && this.props.editButtonClick();
   };
 
   handleInputBlur = e => {

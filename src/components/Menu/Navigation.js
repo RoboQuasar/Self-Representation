@@ -7,7 +7,7 @@ const Navigation = styled.nav`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 180px;
+  max-width: 190px;
 `;
 
 export default Navigation;

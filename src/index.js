@@ -6,10 +6,10 @@ import App from 'components/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'styles/index.css';
 
-import rootReducer from './reducers';
+import accountReducer from './reducers';
 
 const store = createStore(
-  rootReducer,
+  accountReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

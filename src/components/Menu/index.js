@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { resetAccount } from 'actions';
 
 import Auth from 'components/Auth';
 
@@ -15,15 +19,23 @@ export class Menu extends React.PureComponent {
 
   handleAuthClose = () => this.setState({ isAuthOpen: false });
 
+  handleLogoutClick = () => this.props.resetAccount();
+
   render() {
     return (
       <Navigation>
         <NavigationItem href="#">навыки</NavigationItem>
         <NavigationItem href="#">портфолио</NavigationItem>
 
-        <AuthButton onClick={this.handleAuthButtonClick}>
-          Личный профиль
-        </AuthButton>
+        {this.props.account ? (
+          <AuthButton onClick={this.handleLogoutClick}>
+            выйти из профиля
+          </AuthButton>
+        ) : (
+          <AuthButton onClick={this.handleAuthButtonClick}>
+            Личный профиль
+          </AuthButton>
+        )}
 
         {this.state.isAuthOpen && <Auth onClose={this.handleAuthClose} />}
       </Navigation>
@@ -31,4 +43,21 @@ export class Menu extends React.PureComponent {
   }
 }
 
-export default Menu;
+Menu.propTypes = {
+  resetAccount: PropTypes.func,
+  account: PropTypes.obj
+};
+
+export function mapStateToProps(state) {
+  return {
+    account: state.account
+  };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    resetAccount: () => dispatch(resetAccount())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

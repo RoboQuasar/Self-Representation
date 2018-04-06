@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { setAccount } from 'actions';
 
 import AuthWrapper from './AuthWrapper';
 import AuthOverlay from './AuthOverlay';
@@ -9,8 +13,24 @@ import Password from './AuthInput';
 import SubmitButton from './SubmitButton';
 
 export class Auth extends React.PureComponent {
-  handleAuthSubmit = () => this.props.onClose();
-  handleSubmitButtonClick = () => this.props.onClose();
+  handleAuthSubmit = () => {
+    this.props.setAccount(this.account);
+    this.props.onClose();
+  };
+
+  handleSubmitButtonClick = () => {
+    this.props.setAccount(this.account);
+    this.props.onClose();
+  };
+
+  get account() {
+    return {
+      account: {
+        username: this.username.value,
+        password: this.password.value
+      }
+    };
+  }
 
   render() {
     return (
@@ -22,14 +42,16 @@ export class Auth extends React.PureComponent {
             type="text"
             autoComplete="off"
             placeholder="имя пользователя ..."
+            innerRef={u => (this.username = u)}
           />
           <Password
             type="password"
             autoComplete="off"
             placeholder="пароль ..."
+            innerRef={p => (this.password = p)}
           />
           <SubmitButton
-            type="submit"
+            type="button"
             name="submit-auth"
             onClick={this.handleSubmitButtonClick}
           >
@@ -41,4 +63,14 @@ export class Auth extends React.PureComponent {
   }
 }
 
-export default Auth;
+Auth.propTypes = {
+  setAccount: PropTypes.func
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    setAccount: account => dispatch(setAccount(account))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
