@@ -7,7 +7,6 @@ const SkillsSection = styled.div`
   justify-content: space-around;
   padding: 10px;
   border-radius: 4px;
-  border: solid #7bbbee 1px;
 `;
 
 export default SkillsSection;
