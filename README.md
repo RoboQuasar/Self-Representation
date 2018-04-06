@@ -8,11 +8,18 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Available Scripts:
 
   **precommit** - "lint-staged"
+
   **start-rewired** - "react-app-rewired start"
+
   **build-rewired** - "react-app-rewired build"
+
   **test-rewired** - "react-app-rewired test --env=jsdom"
 
+
   **npm start**
+
   **npm test**
+
   **npm run build**
+
   **npm run eject**
