@@ -6,12 +6,11 @@ const DeleteButton = styled.button`
   top: ${props => props.top};
   width: 23px;
   height: 23px;
-  padding: 5px;
   margin: 0;
-  border: none;
-  border-radius: 50%;
+  border: solid #cedfec 1px;
+  border-radius: 5px;
   background: url(delete.png) no-repeat center center, white;
-  background-size: 70% 70%;
+  background-size: 72% 72%;
   cursor: pointer;
   transition: trransform 0.5s;
 
