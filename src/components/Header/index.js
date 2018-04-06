@@ -1,9 +1,10 @@
 import React from 'react';
 
+import Menu from 'containers/Menu';
+import PersonalInfo from 'containers/PersonalInfo';
+import Contacts from 'containers/Contacts';
+
 import Avatar from 'components/Avatar';
-import PersonalInfo from 'components/PersonalInfo';
-import Contacts from 'components/Contacts';
-import Menu from 'components/Menu';
 
 import HeaderWrapper from './HeaderWrapper';
 

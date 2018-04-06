@@ -45,7 +45,7 @@ export class Menu extends React.PureComponent {
 
 Menu.propTypes = {
   resetAccount: PropTypes.func,
-  account: PropTypes.obj
+  account: PropTypes.object
 };
 
 export function mapStateToProps(state) {

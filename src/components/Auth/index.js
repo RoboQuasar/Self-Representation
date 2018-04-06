@@ -51,7 +51,7 @@ export class Auth extends React.PureComponent {
             innerRef={p => (this.password = p)}
           />
           <SubmitButton
-            type="button"
+            type="submit"
             name="submit-auth"
             onClick={this.handleSubmitButtonClick}
           >

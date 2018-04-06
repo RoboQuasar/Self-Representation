@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import EditPhoneButton from 'components/EditButton';
 import EditMailButton from 'components/EditButton';
@@ -99,29 +101,43 @@ export class Contacts extends React.PureComponent {
           </ContactsItem>
         </ContactsList>
 
-        <EditPhoneButton
-          type="button"
-          name="edit-phone"
-          top="5px"
-          onClick={this.handleEditPhoneClick}
-        />
+        {this.props.account && (
+          <React.Fragment>
+            <EditPhoneButton
+              type="button"
+              name="edit-phone"
+              top="5px"
+              onClick={this.handleEditPhoneClick}
+            />
 
-        <EditMailButton
-          type="button"
-          name="edit-mail"
-          top="40px"
-          onClick={this.handleEditMailClick}
-        />
+            <EditMailButton
+              type="button"
+              name="edit-mail"
+              top="40px"
+              onClick={this.handleEditMailClick}
+            />
 
-        <EditSkypeButton
-          type="button"
-          name="edit-skype"
-          top="84px"
-          onClick={this.handleEditSkypeClick}
-        />
+            <EditSkypeButton
+              type="button"
+              name="edit-skype"
+              top="84px"
+              onClick={this.handleEditSkypeClick}
+            />
+          </React.Fragment>
+        )}
       </ContactsListWrapper>
     );
   }
 }
 
-export default Contacts;
+Contacts.propTypes = {
+  account: PropTypes.object
+};
+
+export function mapStateToProps(state) {
+  return {
+    account: state.account
+  };
+}
+
+export default connect(mapStateToProps, null)(Contacts);

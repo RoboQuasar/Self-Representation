@@ -13,6 +13,7 @@ const TextArea = styled.textarea`
   background: #91b9dc;
 
   &:disabled {
+    color: #000;
     background: transparent;
   }
 `;

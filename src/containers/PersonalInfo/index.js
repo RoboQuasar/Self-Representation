@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import NameInput from 'components/TextInput';
 import EditNameButton from 'components/EditButton';
@@ -45,12 +47,15 @@ export class PersonalInfo extends React.PureComponent {
           disabled={this.state.isNameNotEditable}
           onBlur={this.handleInputBlur}
         />
-        <EditNameButton
-          type="button"
-          name="edit-name"
-          top="0"
-          onClick={this.handleEditNameClick}
-        />
+
+        {this.props.account && (
+          <EditNameButton
+            type="button"
+            name="edit-name"
+            top="0"
+            onClick={this.handleEditNameClick}
+          />
+        )}
 
         <PostInput
           type="text"
@@ -63,15 +68,28 @@ export class PersonalInfo extends React.PureComponent {
           disabled={this.state.isPostNotEditable}
           onBlur={this.handleInputBlur}
         />
-        <EditPostButton
-          type="button"
-          name="edit-post"
-          top="50%"
-          onClick={this.handleEditPostClick}
-        />
+
+        {this.props.account && (
+          <EditPostButton
+            type="button"
+            name="edit-post"
+            top="50%"
+            onClick={this.handleEditPostClick}
+          />
+        )}
       </PersonalInfoWrapper>
     );
   }
 }
 
-export default PersonalInfo;
+PersonalInfo.propTypes = {
+  account: PropTypes.object
+};
+
+export function mapStateToProps(state) {
+  return {
+    account: state.account
+  };
+}
+
+export default connect(mapStateToProps, null)(PersonalInfo);

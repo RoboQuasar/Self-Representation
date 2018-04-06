@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { COLORS } from 'styles';
 
 import EditTitleButton from 'components/EditButton';
@@ -36,17 +38,29 @@ export class SectionTitle extends React.PureComponent {
           onBlur={this.handleInputBlur}
         />
 
-        <EditTitleButton
-          type="button"
-          name="edit-title"
-          top="0"
-          right="1.5%"
-          onClick={this.handleEditTitleClick}
-          backgroundColor={COLORS.astral}
-        />
+        {this.props.account && (
+          <EditTitleButton
+            type="button"
+            name="edit-title"
+            top="0"
+            right="1.5%"
+            onClick={this.handleEditTitleClick}
+            backgroundColor={COLORS.astral}
+          />
+        )}
       </TitleWrapper>
     );
   }
 }
 
-export default SectionTitle;
+SectionTitle.propTypes = {
+  account: PropTypes.object
+};
+
+export function mapStateToProps(state) {
+  return {
+    account: state.account
+  };
+}
+
+export default connect(mapStateToProps, null)(SectionTitle);

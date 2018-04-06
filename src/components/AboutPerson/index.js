@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SectionTitle from 'components/SectionTitle';
+import SectionTitle from 'containers/SectionTitle';
 
 import AboutPersonWrapper from './AboutPersonWrapper';
 import TextArea from './TextArea';
