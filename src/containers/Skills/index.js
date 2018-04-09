@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { List } from 'immutable';
 
 import SectionTitle from 'containers/SectionTitle';
@@ -6,6 +8,7 @@ import SkillItem from 'containers/SkillItem';
 
 import SkillsWrapper from './SkillsWrapper';
 import SkillsSection from './SkillsSection';
+import AddSkillButton from './AddSkillButton';
 
 export class Skills extends React.PureComponent {
   state = {
@@ -62,10 +65,24 @@ export class Skills extends React.PureComponent {
               itemIndex={index}
             />
           ))}
+
+          {this.props.account && (
+            <AddSkillButton type="button" name="add-skill" />
+          )}
         </SkillsSection>
       </SkillsWrapper>
     );
   }
 }
 
-export default Skills;
+Skills.propTypes = {
+  account: PropTypes.object
+};
+
+export function mapStateToProps(state) {
+  return {
+    account: state.account
+  };
+}
+
+export default connect(mapStateToProps, null)(Skills);
