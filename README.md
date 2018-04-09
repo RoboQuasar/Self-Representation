@@ -4,6 +4,10 @@ Application 'Self-presentation' with REACT.js, Redux.js
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+## Sours:
+
+https://roboquasar.github.io/Self-Representation/
+
 ## Available Scripts:
 
   **precommit** - "lint-staged"
