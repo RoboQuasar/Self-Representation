@@ -1,8 +1,7 @@
 import React from 'react';
 
 import SectionTitle from 'containers/SectionTitle';
-
-import SkillItem from 'components/SkillItem';
+import SkillItem from 'containers/SkillItem';
 
 import SkillsWrapper from './SkillsWrapper';
 import SkillsSection from './SkillsSection';
