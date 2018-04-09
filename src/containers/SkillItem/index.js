@@ -10,6 +10,12 @@ import SkillItemFigure from './SkillItemFigure';
 import Description from './Description';
 
 export class SkillItem extends React.PureComponent {
+  handleDeleteItemClick = () => {
+    console.log('надали на клик!');
+    console.log(this.props.itemIndex);
+    this.props.deleteSkillItem(this.props.itemIndex);
+  };
+
   render() {
     return (
       <SkillItemWrapper>
@@ -27,7 +33,7 @@ export class SkillItem extends React.PureComponent {
             name="delete-skill"
             top="0"
             right="1.5%"
-            onClick={this.handleEditTitleClick}
+            onClick={this.handleDeleteItemClick}
           />
         )}
       </SkillItemWrapper>
