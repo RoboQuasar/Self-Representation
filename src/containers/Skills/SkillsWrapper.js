@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 const SkillsWrapper = styled.section`
-  position: relative;
-  width: 60%;
+  position: absolute;
+  top: 10px;
+  right: 5%;
+  z-index: 10;
+  width: 55%;
   padding: 1% 2% 1%;
   background-color: #fff;
 `;
