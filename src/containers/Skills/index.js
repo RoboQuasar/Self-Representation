@@ -28,11 +28,11 @@ export class Skills extends React.PureComponent {
         type: 'SkillItem'
       },
       {
-        name: 'дружелюбность',
+        name: 'пунктуальность',
         type: 'CustomSkill'
       },
       {
-        name: 'умею летать',
+        name: 'телепортация',
         type: 'CustomSkill'
       },
       {

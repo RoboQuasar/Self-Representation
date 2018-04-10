@@ -5,6 +5,8 @@ const CustomSkill = styled.span`
   width: 100%;
   padding: 10px 15px;
   color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
   background-color: #337ab7;
   border: solid #7bbbee 1px;
   border-radius: 16px;
