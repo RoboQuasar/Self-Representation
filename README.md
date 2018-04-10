@@ -26,3 +26,7 @@ https://roboquasar.github.io/Self-Representation/
   **npm run build**
 
   **npm run eject**
+
+  ** AUTHOR: **
+    https://github.com/RoboQuasar
+

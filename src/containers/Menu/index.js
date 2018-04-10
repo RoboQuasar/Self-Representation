@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { resetAccount } from 'actions';
 
 import Auth from 'components/Auth';
+import AuthButton from 'components/ConfirmButton';
 
 import Navigation from './Navigation';
 import NavigationItem from './NavigationItem';
-import AuthButton from './AuthButton';
 
 export class Menu extends React.PureComponent {
   state = {
@@ -28,11 +28,11 @@ export class Menu extends React.PureComponent {
         <NavigationItem href="#">портфолио</NavigationItem>
 
         {this.props.account ? (
-          <AuthButton onClick={this.handleLogoutClick}>
+          <AuthButton onClick={this.handleLogoutClick} margin="10px auto 0">
             выйти из профиля
           </AuthButton>
         ) : (
-          <AuthButton onClick={this.handleAuthButtonClick}>
+          <AuthButton onClick={this.handleAuthButtonClick} margin="10px auto 0">
             Личный профиль
           </AuthButton>
         )}
