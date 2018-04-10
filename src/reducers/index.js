@@ -1,9 +1,4 @@
-const initialState = {
-  account: {
-    username: 'Полкан',
-    password: 'Пушка'
-  }
-};
+const initialState = false;
 
 function accountReducer(state = initialState, action) {
   switch (action.type) {
