@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const AuthButton = styled.button`
   padding: 10px 15px;
-  margin: 10px auto 0;
+  margin: ${props => (props.margin ? props.margin : '0')};
   font: normal 11px Helvetica;
   text-transform: uppercase;
   color: #fff;
