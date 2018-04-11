@@ -36,14 +36,15 @@ export class SectionTitle extends React.PureComponent {
           }}
           disabled={this.state.isTitleNotEditable}
           onBlur={this.handleInputBlur}
+          isSubTitle={this.props.subTitle}
         />
 
         {this.props.account && (
           <EditTitleButton
             type="button"
             name="edit-title"
-            top="0"
-            right="1.5%"
+            top={this.props.buttonTop || '0'}
+            right={this.props.buttonRight || '1.5%'}
             onClick={this.handleEditTitleClick}
             backgroundColor={COLORS.astral}
           />

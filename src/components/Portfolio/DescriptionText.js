@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLORS } from 'styles';
 
 const DescriptionText = styled.textarea`
   width: 100%;
@@ -12,7 +13,13 @@ const DescriptionText = styled.textarea`
   text-align: center;
   border: none;
   border-radius: 18px;
+  background: ${COLORS.morningGlory};
   resize: none;
+
+  &:disabled {
+    color: #000;
+    background: transparent;
+  }
 `;
 
 export default DescriptionText;

@@ -80,11 +80,12 @@ export class Skills extends React.PureComponent {
   handleAddCustomSkill = e => {
     e.preventDefault();
 
-    this.setState(prevState => ({
-      skillItems: prevState.skillItems.push(
-        fromJS({ name: this.skillname.value, type: 'CustomSkill' })
-      )
-    }));
+    this.skillname.value !== '' &&
+      this.setState(prevState => ({
+        skillItems: prevState.skillItems.push(
+          fromJS({ name: this.skillname.value, type: 'CustomSkill' })
+        )
+      }));
   };
 
   handleDeleteSkillItem = index => {

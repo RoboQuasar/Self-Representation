@@ -1,6 +1,7 @@
 export const COLORS = {
   astral: '#337ab7',
-  periwinkleGray: '#cfdeec'
+  periwinkleGray: '#cfdeec',
+  morningGlory: '#91b9dc'
 };
 
 export const BREAKPOINTS = {
