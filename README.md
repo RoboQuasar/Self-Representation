@@ -1,9 +1,7 @@
-##Application 'Self-presentation' with REACT.js, Redux.js
+### Application 'Self-presentation' with REACT.js, Redux.js
 *(приложение "Личное резюме" с возможность авторизоваться и редактировать заголовки и информацию о себе)*
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-### Sours: https://roboquasar.github.io/Self-Representation/
 
 #### Available Scripts:
 
