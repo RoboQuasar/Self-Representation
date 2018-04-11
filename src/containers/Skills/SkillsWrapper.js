@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const SkillsWrapper = styled.section`
-  position: absolute;
-  top: 10px;
-  right: 5%;
+  ${props =>
+    props.absoluted
+      ? `position: absolute;
+       top: 10px;
+       right: 3%;
+       width: 56.4%;`
+      : `position: relative;
+       width: 60%;`};
   z-index: 10;
-  width: 55%;
-  padding: 1% 2% 1%;
+  padding: 15px 25px;
   background-color: #fff;
 `;
 

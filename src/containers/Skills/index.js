@@ -18,7 +18,7 @@ import AddCustomSkillName from './AddCustomSkillName';
 
 export class Skills extends React.PureComponent {
   state = {
-    SkillItems: fromJS([
+    skillItems: fromJS([
       {
         imageSrc: 'html5_logo.png',
         type: 'SkillItem'
@@ -73,7 +73,7 @@ export class Skills extends React.PureComponent {
 
   handleAddNewSkill = index => {
     this.setState(prevState => ({
-      SkillItems: prevState.SkillItems.setIn([index, 'type'], 'SkillItem')
+      skillItems: prevState.skillItems.setIn([index, 'type'], 'SkillItem')
     }));
   };
 
@@ -81,32 +81,32 @@ export class Skills extends React.PureComponent {
     e.preventDefault();
 
     this.setState(prevState => ({
-      SkillItems: prevState.SkillItems.push(
+      skillItems: prevState.skillItems.push(
         fromJS({ name: this.skillname.value, type: 'CustomSkill' })
       )
     }));
   };
 
   handleDeleteSkillItem = index => {
-    this.state.SkillItems.get(index).get('type') !== 'CustomSkill'
+    this.state.skillItems.get(index).get('type') !== 'CustomSkill'
       ? this.setState(prevState => ({
-          SkillItems: prevState.SkillItems.setIn([index, 'type'], 'NewSkill')
+          skillItems: prevState.skillItems.setIn([index, 'type'], 'NewSkill')
         }))
       : this.setState(prevState => ({
-          SkillItems: prevState.SkillItems.delete(index)
+          skillItems: prevState.skillItems.delete(index)
         }));
   };
 
   render() {
     return (
-      <SkillsWrapper>
+      <SkillsWrapper absoluted={this.state.isNewSkillsOpen}>
         <SectionTitle
           defaultTitleValue="Профессиональные навыки"
           titleName="skills-title"
         />
 
         <SkillsSection>
-          {this.state.SkillItems.map(
+          {this.state.skillItems.map(
             (item, index) =>
               item.get('type') !== 'NewSkill' && (
                 <SkillItem
@@ -135,7 +135,7 @@ export class Skills extends React.PureComponent {
           this.state.isNewSkillsOpen && (
             <NewSkillsWrapper>
               <NewSkillsTitle>Выберите навык из списка:</NewSkillsTitle>
-              {this.state.SkillItems.map(
+              {this.state.skillItems.map(
                 (item, index) =>
                   item.get('type') === 'NewSkill' && (
                     <SkillItem

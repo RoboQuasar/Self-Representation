@@ -7,10 +7,8 @@ const MainWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  min-height: 100vh;
-  padding: 10px 5% 0;
-  background: url(sky_and_clouds.jpg);
-  background-size: cover;
+  margin-bottom: 20px;
+  padding: 10px 3% 0;
 `;
 
 export default MainWrapper;
