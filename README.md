@@ -1,32 +1,22 @@
-Application 'Self-presentation' with REACT.js, Redux.js
-
-(приложение "Личное резюме" с возможность авторизоваться и редактировать заголовки и информацию о себе)
+##Application 'Self-presentation' with REACT.js, Redux.js
+*(приложение "Личное резюме" с возможность авторизоваться и редактировать заголовки и информацию о себе)*
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Sours:
+### Sours: https://roboquasar.github.io/Self-Representation/
 
-https://roboquasar.github.io/Self-Representation/
+#### Available Scripts:
 
-## Available Scripts:
+  `precommit` - lint-staged
 
-  **precommit** - "lint-staged"
+  `start-rewired` - react-app-rewired start
 
-  **start-rewired** - "react-app-rewired start"
+  `build-rewired` - react-app-rewired build
 
-  **build-rewired** - "react-app-rewired build"
-
-  **test-rewired** - "react-app-rewired test --env=jsdom"
+  `test-rewired` - react-app-rewired test --env=jsdom
 
 
-  **npm start**
+  `npm start`, `npm test`, `npm run build`, `npm run eject`
 
-  **npm test**
-
-  **npm run build**
-
-  **npm run eject**
-
-  ** AUTHOR: **
-    https://github.com/RoboQuasar
+  **Author:** [RoboQuasar](https://github.com/RoboQuasar)
 
