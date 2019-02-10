@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS } from 'styles';
 
-const EditAvatarSubmit = styled.button`
+const Submit = styled.button`
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -23,4 +23,4 @@ const EditAvatarSubmit = styled.button`
   }
 `;
 
-export default EditAvatarSubmit;
+export default Submit;

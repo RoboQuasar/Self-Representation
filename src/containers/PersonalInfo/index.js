@@ -11,7 +11,7 @@ import PostInput from './PostInput';
 
 export class PersonalInfo extends React.PureComponent {
   state = {
-    defaultNameValue: 'Синеоков Роман',
+    fullName: this.props.account.fullName,
     defaultPostValue: 'Front-end developer',
     isNameNotEditable: true,
     isPostNotEditable: true
@@ -38,7 +38,7 @@ export class PersonalInfo extends React.PureComponent {
       <PersonalInfoWrapper>
         <NameInput
           type="text"
-          defaultValue={this.state.defaultNameValue}
+          defaultValue={this.state.fullName}
           name="name-input"
           maxLength="20"
           innerRef={n => {
@@ -92,4 +92,7 @@ export function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(PersonalInfo);
+export default connect(
+  mapStateToProps,
+  null
+)(PersonalInfo);

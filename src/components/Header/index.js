@@ -12,9 +12,12 @@ export class Header extends React.PureComponent {
   render() {
     return (
       <HeaderWrapper>
-        <Avatar avatarSrc="avatar.jpg" />
+        <Avatar />
+
         <PersonalInfo />
+
         <Contacts />
+
         <Menu />
       </HeaderWrapper>
     );

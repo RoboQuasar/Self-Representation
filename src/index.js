@@ -6,10 +6,17 @@ import App from 'components/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'styles/index.css';
 
-import accountReducer from './reducers';
+import rootReducer from './reducers';
 
 const store = createStore(
-  accountReducer,
+  rootReducer,
+  {
+    account: {
+      fullName: 'Синеоков Роман',
+      avatarSrc: 'avatar.jpg'
+    },
+    auth: { isLogin: false }
+  },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

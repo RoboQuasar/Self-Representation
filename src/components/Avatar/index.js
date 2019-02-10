@@ -2,81 +2,65 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import EditAvatarButton from 'components/EditButton';
+import EditButton from 'components/EditButton';
 
 import AvatarWrapper from './AvatarWrapper';
-import EditAvatarForm from './EditAvatarForm';
-import EditAvatarSubmit from './EditAvatarSubmit';
+import EditForm from './EditForm';
+import Submit from './Submit';
 import Img from './Img';
-import EditAvatarLabel from './EditAvatarLabel';
-import EditAvatarInput from './EditAvatarInput';
+import Label from './Label';
+import Input from './Input';
 
 export class Avatar extends React.PureComponent {
   state = {
     isEditableAvatar: false,
     isShowSubmitBtn: false,
-    customAvatarSrc: false
+    avatarSrc: ''
   };
 
   handleEditAvatarClick = () => {
     this.setState({ isEditableAvatar: !this.state.isEditableAvatar });
   };
 
-  handleDownloadAvatar = files => {
+  handleDownloadAvatar = e => {
+    const reader = new FileReader();
+    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = () => {
+      this.setState({ avatarSrc: reader.result });
+    };
     this.setState({ isShowSubmitBtn: true });
   };
 
-  handleDownloadSubmit = () => {
-    this.setState({
-      customAvatarSrc:
-        'http://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg'
-    });
-  };
-
-  handleDownloadAvatarClick = () => {
-    this.setState({
-      customAvatarSrc:
-        'http://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg',
-      isEditableAvatar: false
-    });
-  };
+  handleDownloadSubmit = () => {};
 
   render() {
     return (
       <AvatarWrapper>
-        {!this.state.isEditableAvatar ? (
-          <Img
-            src={this.state.customAvatarSrc || this.props.avatarSrc}
-            alt="SR AVATAR"
-          />
+        {!this.props.account.avatarSrc ? (
+          <Img src={this.props.account.avatarSrc} alt="AVATAR" />
         ) : (
-          <EditAvatarForm onSubmit={this.handleDownloadSubmit}>
-            <EditAvatarLabel>
-              <EditAvatarInput
+          <EditForm onSubmit={this.handleDownloadSubmit}>
+            <Label backgroundUrl={this.state.avatarSrc}>
+              <Input
                 type="file"
                 accept=".jpg, .jpeg, .png"
                 name="download avatar"
                 onChange={this.handleDownloadAvatar}
-                innerRef={a => {
-                  this.avatar = a;
-                }}
+                disabled={this.props.auth.isLogin}
               />
-            </EditAvatarLabel>
+            </Label>
 
             {this.state.isShowSubmitBtn && (
-              <EditAvatarSubmit
-                type="button"
-                name="submit avatar"
-                onClick={this.handleDownloadAvatarClick}
-              >
+              <Submit type="submit" name="submit avatar">
                 заменить аватар
-              </EditAvatarSubmit>
+              </Submit>
             )}
-          </EditAvatarForm>
+          </EditForm>
         )}
 
-        {this.props.account && (
-          <EditAvatarButton
+        {this.props.auth.isLogin && (
+          <EditButton
             type="button"
             name="edit-avatar"
             top="5px"
@@ -89,13 +73,28 @@ export class Avatar extends React.PureComponent {
 }
 
 Avatar.propTypes = {
-  account: PropTypes.object
+  account: PropTypes.shape({
+    fullName: PropTypes.string,
+    avatarSrc: PropTypes.string
+  }),
+  auth: PropTypes.shape({
+    isLogin: PropTypes.bool
+  })
+};
+
+Avatar.defaultProps = {
+  account: {},
+  auth: {}
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    account: state.account,
+    auth: state.auth
   };
 }
 
-export default connect(mapStateToProps, null)(Avatar);
+export default connect(
+  mapStateToProps,
+  null
+)(Avatar);
