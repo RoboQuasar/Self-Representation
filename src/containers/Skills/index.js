@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 import SectionTitle from 'containers/SectionTitle';
 import SkillItem from 'containers/SkillItem';
@@ -122,7 +122,7 @@ export class Skills extends React.PureComponent {
               )
           )}
 
-          {this.props.auth.isLogin && (
+          {this.props.auth.get('isLogin') && (
             <AddSkillButton
               type="button"
               name="add-skill"
@@ -132,7 +132,7 @@ export class Skills extends React.PureComponent {
           )}
         </SkillsSection>
 
-        {this.props.auth.isLogin && this.state.isNewSkillsOpen && (
+        {this.props.auth.get('isLogin') && this.state.isNewSkillsOpen && (
           <NewSkillsWrapper>
             <NewSkillsTitle>Выберите навык из списка:</NewSkillsTitle>
             {this.state.skillItems.map(
@@ -173,14 +173,16 @@ export class Skills extends React.PureComponent {
 }
 
 Skills.propTypes = {
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  })
+  auth: PropTypes.instanceOf(Map)
+};
+
+Skills.defaultProps = {
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.get('auth')
   };
 }
 

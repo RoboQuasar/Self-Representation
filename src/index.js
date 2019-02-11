@@ -2,21 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { fromJS, Map } from 'immutable';
 import App from 'components/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'styles/index.css';
 
 import rootReducer from './reducers';
 
+const initialState = fromJS({
+  account: Map({
+    fullName: 'Синеоков Роман',
+    avatarSrc: 'avatar.jpg'
+  }),
+  auth: Map({ isLogin: false })
+});
+
 const store = createStore(
   rootReducer,
-  {
-    account: {
-      fullName: 'Синеоков Роман',
-      avatarSrc: 'avatar.jpg'
-    },
-    auth: { isLogin: false }
-  },
+  initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

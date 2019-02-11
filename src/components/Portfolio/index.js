@@ -52,7 +52,7 @@ export class Portfolio extends React.PureComponent {
         <SectionTitle
           defaultTitleValue="Портфолио"
           titleName="portfolio-title"
-          maxLengthValue="50"
+          maxLengthValue={50}
         />
 
         <PortfolioItem>
@@ -69,7 +69,7 @@ export class Portfolio extends React.PureComponent {
               defaultTitleValue="Персональный сайт"
               name="portfolio-item-title"
               editButtonClick={this.handleEditResumeClick}
-              subTitle
+              isSubtitle
               buttonTop="-15px"
               buttonRight="-15px"
             />
@@ -109,7 +109,7 @@ export class Portfolio extends React.PureComponent {
               defaultTitleValue="Сайт-портфолио"
               name="bootstrap-item-title"
               editButtonClick={this.handleEditBootstrapClick}
-              subTitle
+              isSubtitle
               buttonTop="-15px"
               buttonRight="-15px"
             />
@@ -147,7 +147,7 @@ export class Portfolio extends React.PureComponent {
               defaultTitleValue="Главная страница бизнес сайта"
               name="busin-sol-item-title"
               editButtonClick={this.handleEditBusinessClick}
-              subTitle
+              isSubtitle
               buttonTop="-15px"
               buttonRight="-15px"
             />

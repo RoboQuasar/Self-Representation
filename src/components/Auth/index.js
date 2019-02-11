@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Map } from 'immutable';
 import { setAccount, login } from 'actions';
 
 import AuthWrapper from './AuthWrapper';
@@ -35,10 +36,10 @@ export class Auth extends React.PureComponent {
   };
 
   get account() {
-    return {
-      ...this.props.account,
-      fullName: `${this.state.firstName} ${this.state.surName}`
-    };
+    return this.props.account.set(
+      'fullName',
+      `${this.state.firstName} ${this.state.surName}`
+    );
   }
 
   render() {
@@ -83,9 +84,15 @@ Auth.propTypes = {
   })
 };
 
+Auth.defaultProps = {
+  setAccount: () => {},
+  login: () => {},
+  account: Map()
+};
+
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    account: state.get('account')
   };
 }
 

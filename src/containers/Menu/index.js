@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Map } from 'immutable';
 import { logout } from 'actions';
 
 import Auth from 'components/Auth';
@@ -29,7 +30,7 @@ export class Menu extends React.PureComponent {
         <NavigationItem href="#">навыки</NavigationItem>
         <NavigationItem href="#">портфолио</NavigationItem>
 
-        {this.props.auth.isLogin ? (
+        {this.props.auth.get('isLogin') ? (
           <AuthButton onClick={this.handleLogoutClick} margin="10px auto 0">
             выйти из профиля
           </AuthButton>
@@ -54,12 +55,12 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   logout: () => {},
-  auth: {}
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.get('auth')
   };
 }
 

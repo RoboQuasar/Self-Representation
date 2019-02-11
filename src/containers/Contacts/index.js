@@ -101,7 +101,7 @@ export class Contacts extends React.PureComponent {
           </ContactsItem>
         </ContactsList>
 
-        {this.props.auth.isLogin && (
+        {this.props.auth.get('isLogin') && (
           <React.Fragment>
             <EditPhoneButton
               type="button"
@@ -138,7 +138,7 @@ Contacts.propTypes = {
 
 export function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.get('auth')
   };
 }
 

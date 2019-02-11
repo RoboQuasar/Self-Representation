@@ -1,11 +1,13 @@
-const initialState = {};
+import { Map } from 'immutable';
+
+const initialState = Map();
 
 function accountReducer(state = initialState, action) {
   switch (action.type) {
     case 'SET_ACCOUNT':
-      return action.account;
+      return state.merge(action.account);
     case 'RESET_ACCOUNT':
-      return {};
+      return Map();
     default:
       return state;
   }

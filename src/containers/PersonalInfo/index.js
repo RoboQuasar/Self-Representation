@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 import EditPostButton from 'components/EditButton';
 
@@ -19,16 +20,14 @@ export class PersonalInfo extends React.PureComponent {
 
   handleInputBlur = e => {
     if (e.target.value === '') e.target.value = e.target.defaultValue;
-    this.setState({
-      isPostNotEditable: true
-    });
+    this.setState({ isPostNotEditable: true });
   };
 
   render() {
     return (
       <PersonalInfoWrapper>
         <span style={{ font: 'bolder 30px sans-serif', color: '#fff' }}>
-          {this.props.account.fullName}
+          {this.props.account.get('fullName')}
         </span>
 
         <PostInput
@@ -43,7 +42,7 @@ export class PersonalInfo extends React.PureComponent {
           onBlur={this.handleInputBlur}
         />
 
-        {this.props.auth.isLogin && (
+        {this.props.auth.get('isLogin') && (
           <EditPostButton
             type="button"
             name="edit-post"
@@ -67,14 +66,14 @@ PersonalInfo.propTypes = {
 };
 
 PersonalInfo.defaultProps = {
-  account: {},
-  auth: {}
+  account: new Map(),
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account,
-    auth: state.auth
+    account: state.get('account'),
+    auth: state.get('auth')
   };
 }
 

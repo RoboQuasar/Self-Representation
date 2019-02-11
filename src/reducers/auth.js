@@ -1,11 +1,13 @@
-const initialState = {};
+import { Map } from 'immutable';
+
+const initialState = Map();
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGIN':
-      return action;
+      return state.set('isLogin', action);
     case 'LOGOUT':
-      return {};
+      return Map();
     default:
       return state;
   }

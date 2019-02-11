@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAccount } from 'actions';
 import Alert from 'react-s-alert';
+import { Map } from 'immutable';
 
 import EditButton from 'components/EditButton';
 
@@ -36,10 +37,9 @@ export class Avatar extends React.PureComponent {
 
   handleAvatarChangeSubmit = e => {
     e.preventDefault();
-    this.props.setAccount({
-      ...this.props.account,
-      avatarSrc: this.state.avatarSrc
-    });
+    this.props.setAccount(
+      this.props.account.set('avatarSrc', this.state.avatarSrc)
+    );
 
     Alert.success('Аватар успешно изменён');
   };
@@ -47,7 +47,7 @@ export class Avatar extends React.PureComponent {
   render() {
     return (
       <AvatarWrapper>
-        {this.props.auth.isLogin ? (
+        {this.props.auth.get('isLogin') ? (
           <EditForm onSubmit={this.handleAvatarChangeSubmit}>
             <Label backgroundUrl={this.state.avatarSrc}>
               <Input
@@ -55,7 +55,7 @@ export class Avatar extends React.PureComponent {
                 accept=".jpg, .jpeg, .png"
                 name="download avatar"
                 onChange={this.handleAvatarChange}
-                disabled={!this.props.auth.isLogin}
+                disabled={!this.props.auth.get('isLogin')}
               />
             </Label>
 
@@ -66,10 +66,10 @@ export class Avatar extends React.PureComponent {
             )}
           </EditForm>
         ) : (
-          <Img src={this.props.account.avatarSrc} alt="AVATAR" />
+          <Img src={this.props.account.get('avatarSrc')} alt="AVATAR" />
         )}
 
-        {this.props.auth.isLogin && (
+        {this.props.auth.get('isLogin') && (
           <EditButton
             type="button"
             name="edit-avatar"
@@ -93,14 +93,14 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-  account: {},
-  auth: {}
+  account: new Map(),
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account,
-    auth: state.auth
+    account: state.get('account'),
+    auth: state.get('auth')
   };
 }
 
