@@ -39,7 +39,7 @@ export class SectionTitle extends React.PureComponent {
           isSubTitle={this.props.subTitle}
         />
 
-        {this.props.account && (
+        {this.props.auth.isLogin && (
           <EditTitleButton
             type="button"
             name="edit-title"
@@ -55,13 +55,22 @@ export class SectionTitle extends React.PureComponent {
 }
 
 SectionTitle.propTypes = {
-  account: PropTypes.object
+  auth: PropTypes.shape({
+    isLogin: PropTypes.bool
+  })
+};
+
+SectionTitle.defaultProps = {
+  auth: {}
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.auth
   };
 }
 
-export default connect(mapStateToProps, null)(SectionTitle);
+export default connect(
+  mapStateToProps,
+  null
+)(SectionTitle);

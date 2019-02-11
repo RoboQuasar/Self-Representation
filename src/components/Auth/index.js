@@ -2,59 +2,70 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setAccount } from 'actions';
+import { setAccount, login } from 'actions';
 
 import AuthWrapper from './AuthWrapper';
 import AuthOverlay from './AuthOverlay';
 import AuthForm from './AuthForm';
 import AuthTitle from './AuthTitle';
 import UserName from './AuthInput';
-import Password from './AuthInput';
+import SurName from './AuthInput';
 import SubmitButton from './SubmitButton';
 
 export class Auth extends React.PureComponent {
-  handleAuthSubmit = () => {
-    this.props.setAccount(this.account);
-    this.props.onClose();
+  state = {
+    firstName: '',
+    surName: ''
   };
 
-  handleSubmitButtonClick = () => {
+  handleFirstNameChange = e => {
+    this.setState({ firstName: e.target.value });
+  };
+
+  handleSurNameChange = e => {
+    this.setState({ surName: e.target.value });
+  };
+
+  handleAuthSubmit = e => {
+    e.preventDefault();
+
     this.props.setAccount(this.account);
+    this.props.login();
     this.props.onClose();
   };
 
   get account() {
     return {
-      account: {
-        username: this.username.value,
-        password: this.password.value
-      }
+      ...this.props.account,
+      fullName: `${this.state.firstName} ${this.state.surName}`
     };
   }
 
   render() {
     return (
       <AuthWrapper>
-        <AuthOverlay />
+        <AuthOverlay onClick={this.props.onClose} />
+
         <AuthForm onSubmit={this.handleAuthSubmit}>
-          <AuthTitle>Введите имя пользователя и пароль</AuthTitle>
+          <AuthTitle>Введите имя и фамилию</AuthTitle>
+
           <UserName
             type="text"
             autoComplete="off"
-            placeholder="имя пользователя ..."
-            innerRef={u => (this.username = u)}
+            value={this.state.firstName}
+            placeholder="Введите имя ..."
+            required
+            onChange={this.handleFirstNameChange}
           />
-          <Password
-            type="password"
+          <SurName
+            type="text"
             autoComplete="off"
-            placeholder="пароль ..."
-            innerRef={p => (this.password = p)}
+            value={this.state.surName}
+            placeholder="Введите фамилию ..."
+            required
+            onChange={this.handleSurNameChange}
           />
-          <SubmitButton
-            type="submit"
-            name="submit-auth"
-            onClick={this.handleSubmitButtonClick}
-          >
+          <SubmitButton type="submit" name="submit-auth">
             войти
           </SubmitButton>
         </AuthForm>
@@ -64,13 +75,28 @@ export class Auth extends React.PureComponent {
 }
 
 Auth.propTypes = {
-  setAccount: PropTypes.func
+  setAccount: PropTypes.func,
+  login: PropTypes.func,
+  account: PropTypes.shape({
+    fullName: PropTypes.string,
+    avatarSrc: PropTypes.string
+  })
 };
 
-export function mapDispatchToProps(dispatch) {
+export function mapStateToProps(state) {
   return {
-    setAccount: account => dispatch(setAccount(account))
+    account: state.account
   };
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export function mapDispatchToProps(dispatch) {
+  return {
+    setAccount: account => dispatch(setAccount(account)),
+    login: () => dispatch(login())
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Auth);

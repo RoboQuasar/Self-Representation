@@ -1,11 +1,11 @@
-const initialState = false;
+const initialState = {};
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGIN':
-      return action.isLogin;
+      return action;
     case 'LOGOUT':
-      return false;
+      return {};
     default:
       return state;
   }

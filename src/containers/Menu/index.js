@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { resetAccount } from 'actions';
+import { logout } from 'actions';
 
 import Auth from 'components/Auth';
 import AuthButton from 'components/ConfirmButton';
@@ -19,7 +19,9 @@ export class Menu extends React.PureComponent {
 
   handleAuthClose = () => this.setState({ isAuthOpen: false });
 
-  handleLogoutClick = () => this.props.resetAccount();
+  handleLogoutClick = () => {
+    this.props.logout();
+  };
 
   render() {
     return (
@@ -27,7 +29,7 @@ export class Menu extends React.PureComponent {
         <NavigationItem href="#">навыки</NavigationItem>
         <NavigationItem href="#">портфолио</NavigationItem>
 
-        {this.props.account ? (
+        {this.props.auth.isLogin ? (
           <AuthButton onClick={this.handleLogoutClick} margin="10px auto 0">
             выйти из профиля
           </AuthButton>
@@ -44,20 +46,30 @@ export class Menu extends React.PureComponent {
 }
 
 Menu.propTypes = {
-  resetAccount: PropTypes.func,
-  account: PropTypes.object
+  logout: PropTypes.func,
+  auth: PropTypes.shape({
+    isLogin: PropTypes.bool
+  })
+};
+
+Menu.defaultProps = {
+  logout: () => {},
+  auth: {}
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.auth
   };
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    resetAccount: () => dispatch(resetAccount())
+    logout: () => dispatch(logout())
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu);

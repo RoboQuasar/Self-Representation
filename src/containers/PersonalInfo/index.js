@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import NameInput from 'components/TextInput';
-import EditNameButton from 'components/EditButton';
 import EditPostButton from 'components/EditButton';
 
 import PersonalInfoWrapper from './PersonalInfoWrapper';
@@ -11,14 +9,8 @@ import PostInput from './PostInput';
 
 export class PersonalInfo extends React.PureComponent {
   state = {
-    fullName: this.props.account.fullName,
     defaultPostValue: 'Front-end developer',
-    isNameNotEditable: true,
     isPostNotEditable: true
-  };
-
-  handleEditNameClick = () => {
-    this.setState({ isNameNotEditable: false }, () => this.name.focus());
   };
 
   handleEditPostClick = () => {
@@ -28,7 +20,6 @@ export class PersonalInfo extends React.PureComponent {
   handleInputBlur = e => {
     if (e.target.value === '') e.target.value = e.target.defaultValue;
     this.setState({
-      isNameNotEditable: true,
       isPostNotEditable: true
     });
   };
@@ -36,26 +27,9 @@ export class PersonalInfo extends React.PureComponent {
   render() {
     return (
       <PersonalInfoWrapper>
-        <NameInput
-          type="text"
-          defaultValue={this.state.fullName}
-          name="name-input"
-          maxLength="20"
-          innerRef={n => {
-            this.name = n;
-          }}
-          disabled={this.state.isNameNotEditable}
-          onBlur={this.handleInputBlur}
-        />
-
-        {this.props.account && (
-          <EditNameButton
-            type="button"
-            name="edit-name"
-            top="0"
-            onClick={this.handleEditNameClick}
-          />
-        )}
+        <span style={{ font: 'bolder 30px sans-serif', color: '#fff' }}>
+          {this.props.account.fullName}
+        </span>
 
         <PostInput
           type="text"
@@ -69,7 +43,7 @@ export class PersonalInfo extends React.PureComponent {
           onBlur={this.handleInputBlur}
         />
 
-        {this.props.account && (
+        {this.props.auth.isLogin && (
           <EditPostButton
             type="button"
             name="edit-post"
@@ -83,12 +57,24 @@ export class PersonalInfo extends React.PureComponent {
 }
 
 PersonalInfo.propTypes = {
-  account: PropTypes.object
+  account: PropTypes.shape({
+    fullName: PropTypes.string,
+    avatarSrc: PropTypes.string
+  }),
+  auth: PropTypes.shape({
+    isLogin: PropTypes.bool
+  })
+};
+
+PersonalInfo.defaultProps = {
+  account: {},
+  auth: {}
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    account: state.account,
+    auth: state.auth
   };
 }
 

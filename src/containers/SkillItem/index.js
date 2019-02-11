@@ -38,30 +38,35 @@ export class SkillItem extends React.PureComponent {
           )}
         </SkillItemFigure>
 
-        {this.props.account &&
-          this.props.type !== 'NewSkill' && (
-            <DeleteItemButton
-              type="button"
-              name="delete-skill"
-              top="0"
-              right="1.5%"
-              onClick={this.handleDeleteItemClick}
-            />
-          )}
+        {this.props.auth.isLogin && this.props.type !== 'NewSkill' && (
+          <DeleteItemButton
+            type="button"
+            name="delete-skill"
+            top="0"
+            right="1.5%"
+            onClick={this.handleDeleteItemClick}
+          />
+        )}
       </SkillItemWrapper>
     );
   }
 }
 
 SkillItem.propTypes = {
-  account: PropTypes.object,
+  account: PropTypes.shape({
+    fullName: PropTypes.string,
+    avatarSrc: PropTypes.string
+  }),
   type: PropTypes.string
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.auth
   };
 }
 
-export default connect(mapStateToProps, null)(SkillItem);
+export default connect(
+  mapStateToProps,
+  null
+)(SkillItem);

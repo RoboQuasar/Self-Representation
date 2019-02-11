@@ -122,7 +122,7 @@ export class Skills extends React.PureComponent {
               )
           )}
 
-          {this.props.account && (
+          {this.props.auth.isLogin && (
             <AddSkillButton
               type="button"
               name="add-skill"
@@ -132,55 +132,59 @@ export class Skills extends React.PureComponent {
           )}
         </SkillsSection>
 
-        {this.props.account &&
-          this.state.isNewSkillsOpen && (
-            <NewSkillsWrapper>
-              <NewSkillsTitle>Выберите навык из списка:</NewSkillsTitle>
-              {this.state.skillItems.map(
-                (item, index) =>
-                  item.get('type') === 'NewSkill' && (
-                    <SkillItem
-                      key={index}
-                      imageSrc={item.get('imageSrc')}
-                      addNewSkill={this.handleAddNewSkill}
-                      description={item.get('description')}
-                      itemIndex={index}
-                      type={item.get('type')}
-                    />
-                  )
-              )}
+        {this.props.auth.isLogin && this.state.isNewSkillsOpen && (
+          <NewSkillsWrapper>
+            <NewSkillsTitle>Выберите навык из списка:</NewSkillsTitle>
+            {this.state.skillItems.map(
+              (item, index) =>
+                item.get('type') === 'NewSkill' && (
+                  <SkillItem
+                    key={index}
+                    imageSrc={item.get('imageSrc')}
+                    addNewSkill={this.handleAddNewSkill}
+                    description={item.get('description')}
+                    itemIndex={index}
+                    type={item.get('type')}
+                  />
+                )
+            )}
 
-              <AddCustomSkillForm onSubmit={this.handleAddCustomSkill}>
-                <NewSkillsTitle>или добавьте свой:</NewSkillsTitle>
-                <AddCustomSkillName
-                  type="text"
-                  name="add-custom-skill"
-                  placeholder="введите название навыка"
-                  innerRef={s => (this.skillname = s)}
-                />
-                <AddCustomSkillSubmit
-                  type="submit"
-                  name="custom-skill-submit"
-                  onClick={this.handleAddCustomSkill}
-                >
-                  добавить
-                </AddCustomSkillSubmit>
-              </AddCustomSkillForm>
-            </NewSkillsWrapper>
-          )}
+            <AddCustomSkillForm onSubmit={this.handleAddCustomSkill}>
+              <NewSkillsTitle>или добавьте свой:</NewSkillsTitle>
+              <AddCustomSkillName
+                type="text"
+                name="add-custom-skill"
+                placeholder="введите название навыка"
+                innerRef={s => (this.skillname = s)}
+              />
+              <AddCustomSkillSubmit
+                type="submit"
+                name="custom-skill-submit"
+                onClick={this.handleAddCustomSkill}
+              >
+                добавить
+              </AddCustomSkillSubmit>
+            </AddCustomSkillForm>
+          </NewSkillsWrapper>
+        )}
       </SkillsWrapper>
     );
   }
 }
 
 Skills.propTypes = {
-  account: PropTypes.object
+  auth: PropTypes.shape({
+    isLogin: PropTypes.bool
+  })
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.auth
   };
 }
 
-export default connect(mapStateToProps, null)(Skills);
+export default connect(
+  mapStateToProps,
+  null
+)(Skills);

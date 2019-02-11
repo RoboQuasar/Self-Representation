@@ -10,27 +10,23 @@ const Label = styled.label`
   border: solid #7bbbee 1px;
   border-radius: 50%;
   background: url(${props =>
-        props.avatarSrc ? props.avatarSrc : 'download.png'})
+        props.backgroundUrl ? props.backgroundUrl : 'download.png'})
       center center no-repeat,
     #91b9dc;
-  background-size: 50% 50%;
+  background-size: ${props => (props.backgroundUrl ? 'cover' : '50% 50%')};
   cursor: pointer;
 
   &:hover {
-    background: url(${props =>
-          props.avatarSrc ? props.avatarSrc : 'download.png'})
-        center center no-repeat,
-      #82b3dd;
-    background-size: 50% 50%;
+    background-color: #82b3dd;
   }
 `;
 
 Label.propTypes = {
-  avatarSrc: PropTypes.string
+  backgroundUrl: PropTypes.string
 };
 
 Label.defaultProps = {
-  avatarSrc: ''
+  backgroundUrl: ''
 };
 
 export default Label;

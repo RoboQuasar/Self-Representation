@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setAccount } from 'actions';
+import Alert from 'react-s-alert';
 
 import EditButton from 'components/EditButton';
 
@@ -22,7 +24,7 @@ export class Avatar extends React.PureComponent {
     this.setState({ isEditableAvatar: !this.state.isEditableAvatar });
   };
 
-  handleDownloadAvatar = e => {
+  handleAvatarChange = e => {
     const reader = new FileReader();
     if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
 
@@ -32,22 +34,28 @@ export class Avatar extends React.PureComponent {
     this.setState({ isShowSubmitBtn: true });
   };
 
-  handleDownloadSubmit = () => {};
+  handleAvatarChangeSubmit = e => {
+    e.preventDefault();
+    this.props.setAccount({
+      ...this.props.account,
+      avatarSrc: this.state.avatarSrc
+    });
+
+    Alert.success('Аватар успешно изменён');
+  };
 
   render() {
     return (
       <AvatarWrapper>
-        {!this.props.account.avatarSrc ? (
-          <Img src={this.props.account.avatarSrc} alt="AVATAR" />
-        ) : (
-          <EditForm onSubmit={this.handleDownloadSubmit}>
+        {this.props.auth.isLogin ? (
+          <EditForm onSubmit={this.handleAvatarChangeSubmit}>
             <Label backgroundUrl={this.state.avatarSrc}>
               <Input
                 type="file"
                 accept=".jpg, .jpeg, .png"
                 name="download avatar"
-                onChange={this.handleDownloadAvatar}
-                disabled={this.props.auth.isLogin}
+                onChange={this.handleAvatarChange}
+                disabled={!this.props.auth.isLogin}
               />
             </Label>
 
@@ -57,6 +65,8 @@ export class Avatar extends React.PureComponent {
               </Submit>
             )}
           </EditForm>
+        ) : (
+          <Img src={this.props.account.avatarSrc} alt="AVATAR" />
         )}
 
         {this.props.auth.isLogin && (
@@ -94,7 +104,13 @@ export function mapStateToProps(state) {
   };
 }
 
+export function mapDispatchToProps(dispatch) {
+  return {
+    setAccount: account => dispatch(setAccount(account))
+  };
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Avatar);
