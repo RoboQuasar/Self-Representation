@@ -14,7 +14,7 @@ const EditButton = styled.button`
     ${props => (props.backgroundColor ? props.backgroundColor : 'white')};
   background-size: 70% 70%;
   cursor: pointer;
-  transition: trransform 0.5s;
+  transition: transform 0.3s;
 
   &:hover {
     transform: scale(1.1);

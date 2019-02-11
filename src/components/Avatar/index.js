@@ -5,7 +5,7 @@ import { setAccount } from 'actions';
 import Alert from 'react-s-alert';
 import { Map } from 'immutable';
 
-import EditButton from 'components/EditButton';
+import EditIconWrapper from './EditIconWrapper';
 
 import AvatarWrapper from './AvatarWrapper';
 import EditForm from './EditForm';
@@ -57,25 +57,26 @@ export class Avatar extends React.PureComponent {
                 onChange={this.handleAvatarChange}
                 disabled={!this.props.auth.get('isLogin')}
               />
+
+              {this.props.auth.get('isLogin') && (
+                <EditIconWrapper>
+                  <img
+                    src="pencil.png"
+                    alt="edit icon"
+                    style={{ width: '100%', heigth: '100%' }}
+                  />
+                </EditIconWrapper>
+              )}
             </Label>
 
             {this.state.isShowSubmitBtn && (
               <Submit type="submit" name="submit avatar">
-                заменить аватар
+                сохранить аватар
               </Submit>
             )}
           </EditForm>
         ) : (
           <Img src={this.props.account.get('avatarSrc')} alt="AVATAR" />
-        )}
-
-        {this.props.auth.get('isLogin') && (
-          <EditButton
-            type="button"
-            name="edit-avatar"
-            top="5px"
-            onClick={this.handleEditAvatarClick}
-          />
         )}
       </AvatarWrapper>
     );

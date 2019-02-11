@@ -22,7 +22,7 @@ class App extends Component {
 
         <Alert
           stack={{ limit: 2 }}
-          position="bottoms-right"
+          position="bottom-right"
           timeout={3000}
           effect="slide"
         />

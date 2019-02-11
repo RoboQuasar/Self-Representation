@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 import EditPhoneButton from 'components/EditButton';
 import EditMailButton from 'components/EditButton';
