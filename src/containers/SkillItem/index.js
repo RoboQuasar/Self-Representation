@@ -54,10 +54,7 @@ export class SkillItem extends React.PureComponent {
 }
 
 SkillItem.propTypes = {
-  account: PropTypes.shape({
-    fullName: PropTypes.string,
-    avatarSrc: PropTypes.string
-  }),
+  account: PropTypes.instanceOf(Map),
   type: PropTypes.string
 };
 

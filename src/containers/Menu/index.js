@@ -48,9 +48,7 @@ export class Menu extends React.PureComponent {
 
 Menu.propTypes = {
   logout: PropTypes.func,
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  })
+  auth: PropTypes.instanceOf(Map)
 };
 
 Menu.defaultProps = {

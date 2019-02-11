@@ -56,13 +56,8 @@ export class PersonalInfo extends React.PureComponent {
 }
 
 PersonalInfo.propTypes = {
-  account: PropTypes.shape({
-    fullName: PropTypes.string,
-    avatarSrc: PropTypes.string
-  }),
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  })
+  account: PropTypes.instanceOf(Map),
+  auth: PropTypes.instanceOf(Map)
 };
 
 PersonalInfo.defaultProps = {

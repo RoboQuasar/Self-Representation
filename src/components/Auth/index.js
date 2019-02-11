@@ -78,10 +78,7 @@ export class Auth extends React.PureComponent {
 Auth.propTypes = {
   setAccount: PropTypes.func,
   login: PropTypes.func,
-  account: PropTypes.shape({
-    fullName: PropTypes.string,
-    avatarSrc: PropTypes.string
-  })
+  account: PropTypes.instanceOf(Map)
 };
 
 Auth.defaultProps = {

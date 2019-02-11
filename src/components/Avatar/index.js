@@ -83,13 +83,8 @@ export class Avatar extends React.PureComponent {
 }
 
 Avatar.propTypes = {
-  account: PropTypes.shape({
-    fullName: PropTypes.string,
-    avatarSrc: PropTypes.string
-  }),
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  })
+  account: PropTypes.instanceOf(Map),
+  auth: PropTypes.instanceOf(Map)
 };
 
 Avatar.defaultProps = {

@@ -56,9 +56,7 @@ export class SectionTitle extends React.PureComponent {
 }
 
 SectionTitle.propTypes = {
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  }),
+  auth: PropTypes.instanceOf(Map),
   subTitle: PropTypes.bool,
   maxLength: PropTypes.number
 };

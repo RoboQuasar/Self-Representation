@@ -131,9 +131,7 @@ export class Contacts extends React.PureComponent {
 }
 
 Contacts.propTypes = {
-  auth: PropTypes.shape({
-    isLogin: PropTypes.bool
-  })
+  auth: PropTypes.instanceOf(Map)
 };
 
 export function mapStateToProps(state) {
