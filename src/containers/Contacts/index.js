@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 import EditPhoneButton from 'components/EditButton';
 import EditMailButton from 'components/EditButton';
@@ -101,7 +102,7 @@ export class Contacts extends React.PureComponent {
           </ContactsItem>
         </ContactsList>
 
-        {this.props.account && (
+        {this.props.auth.get('isLogin') && (
           <React.Fragment>
             <EditPhoneButton
               type="button"
@@ -131,13 +132,16 @@ export class Contacts extends React.PureComponent {
 }
 
 Contacts.propTypes = {
-  account: PropTypes.object
+  auth: PropTypes.instanceOf(Map)
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.get('auth')
   };
 }
 
-export default connect(mapStateToProps, null)(Contacts);
+export default connect(
+  mapStateToProps,
+  null
+)(Contacts);

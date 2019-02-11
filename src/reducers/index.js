@@ -1,14 +1,10 @@
-const initialState = false;
+import { combineReducers } from 'redux-immutable';
+import accountReducer from './account';
+import authReducer from './auth';
 
-function accountReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'SET_ACCOUNT':
-      return action.account;
-    case 'RESET_ACCOUNT':
-      return false;
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  account: accountReducer,
+  auth: authReducer
+});
 
-export default accountReducer;
+export default rootReducer;

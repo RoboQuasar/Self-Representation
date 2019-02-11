@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const EditAvatarForm = styled.form`
+const EditForm = styled.form`
   position: relative;
   display: block;
   width: 100%;
@@ -9,4 +9,4 @@ const EditAvatarForm = styled.form`
   padding: 0;
 `;
 
-export default EditAvatarForm;
+export default EditForm;

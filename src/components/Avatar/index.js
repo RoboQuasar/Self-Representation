@@ -1,87 +1,82 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setAccount } from 'actions';
+import Alert from 'react-s-alert';
+import { Map } from 'immutable';
 
-import EditAvatarButton from 'components/EditButton';
+import EditIconWrapper from './EditIconWrapper';
 
 import AvatarWrapper from './AvatarWrapper';
-import EditAvatarForm from './EditAvatarForm';
-import EditAvatarSubmit from './EditAvatarSubmit';
+import EditForm from './EditForm';
+import Submit from './Submit';
 import Img from './Img';
-import EditAvatarLabel from './EditAvatarLabel';
-import EditAvatarInput from './EditAvatarInput';
+import Label from './Label';
+import Input from './Input';
 
 export class Avatar extends React.PureComponent {
   state = {
     isEditableAvatar: false,
     isShowSubmitBtn: false,
-    customAvatarSrc: false
+    avatarSrc: ''
   };
 
   handleEditAvatarClick = () => {
     this.setState({ isEditableAvatar: !this.state.isEditableAvatar });
   };
 
-  handleDownloadAvatar = files => {
+  handleAvatarChange = e => {
+    const reader = new FileReader();
+    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = () => {
+      this.setState({ avatarSrc: reader.result });
+    };
     this.setState({ isShowSubmitBtn: true });
   };
 
-  handleDownloadSubmit = () => {
-    this.setState({
-      customAvatarSrc:
-        'http://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg'
-    });
-  };
+  handleAvatarChangeSubmit = e => {
+    e.preventDefault();
+    this.props.setAccount(
+      this.props.account.set('avatarSrc', this.state.avatarSrc)
+    );
 
-  handleDownloadAvatarClick = () => {
-    this.setState({
-      customAvatarSrc:
-        'http://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg',
-      isEditableAvatar: false
-    });
+    Alert.success('Аватар успешно изменён');
   };
 
   render() {
     return (
       <AvatarWrapper>
-        {!this.state.isEditableAvatar ? (
-          <Img
-            src={this.state.customAvatarSrc || this.props.avatarSrc}
-            alt="SR AVATAR"
-          />
-        ) : (
-          <EditAvatarForm onSubmit={this.handleDownloadSubmit}>
-            <EditAvatarLabel>
-              <EditAvatarInput
+        {this.props.auth.get('isLogin') ? (
+          <EditForm onSubmit={this.handleAvatarChangeSubmit}>
+            <Label backgroundUrl={this.state.avatarSrc}>
+              <Input
                 type="file"
                 accept=".jpg, .jpeg, .png"
                 name="download avatar"
-                onChange={this.handleDownloadAvatar}
-                innerRef={a => {
-                  this.avatar = a;
-                }}
+                onChange={this.handleAvatarChange}
+                disabled={!this.props.auth.get('isLogin')}
               />
-            </EditAvatarLabel>
+
+              {this.props.auth.get('isLogin') && (
+                <EditIconWrapper>
+                  <img
+                    src="pencil.png"
+                    alt="edit icon"
+                    style={{ width: '100%', heigth: '100%' }}
+                  />
+                </EditIconWrapper>
+              )}
+            </Label>
 
             {this.state.isShowSubmitBtn && (
-              <EditAvatarSubmit
-                type="button"
-                name="submit avatar"
-                onClick={this.handleDownloadAvatarClick}
-              >
-                заменить аватар
-              </EditAvatarSubmit>
+              <Submit type="submit" name="submit avatar">
+                сохранить аватар
+              </Submit>
             )}
-          </EditAvatarForm>
-        )}
-
-        {this.props.account && (
-          <EditAvatarButton
-            type="button"
-            name="edit-avatar"
-            top="5px"
-            onClick={this.handleEditAvatarClick}
-          />
+          </EditForm>
+        ) : (
+          <Img src={this.props.account.get('avatarSrc')} alt="AVATAR" />
         )}
       </AvatarWrapper>
     );
@@ -89,13 +84,29 @@ export class Avatar extends React.PureComponent {
 }
 
 Avatar.propTypes = {
-  account: PropTypes.object
+  account: PropTypes.instanceOf(Map),
+  auth: PropTypes.instanceOf(Map)
+};
+
+Avatar.defaultProps = {
+  account: new Map(),
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    account: state.get('account'),
+    auth: state.get('auth')
   };
 }
 
-export default connect(mapStateToProps, null)(Avatar);
+export function mapDispatchToProps(dispatch) {
+  return {
+    setAccount: account => dispatch(setAccount(account))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Avatar);

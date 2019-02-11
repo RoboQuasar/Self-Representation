@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
-import NameInput from 'components/TextInput';
-import EditNameButton from 'components/EditButton';
 import EditPostButton from 'components/EditButton';
 
 import PersonalInfoWrapper from './PersonalInfoWrapper';
@@ -11,14 +10,8 @@ import PostInput from './PostInput';
 
 export class PersonalInfo extends React.PureComponent {
   state = {
-    defaultNameValue: 'Синеоков Роман',
     defaultPostValue: 'Front-end developer',
-    isNameNotEditable: true,
     isPostNotEditable: true
-  };
-
-  handleEditNameClick = () => {
-    this.setState({ isNameNotEditable: false }, () => this.name.focus());
   };
 
   handleEditPostClick = () => {
@@ -27,35 +20,15 @@ export class PersonalInfo extends React.PureComponent {
 
   handleInputBlur = e => {
     if (e.target.value === '') e.target.value = e.target.defaultValue;
-    this.setState({
-      isNameNotEditable: true,
-      isPostNotEditable: true
-    });
+    this.setState({ isPostNotEditable: true });
   };
 
   render() {
     return (
       <PersonalInfoWrapper>
-        <NameInput
-          type="text"
-          defaultValue={this.state.defaultNameValue}
-          name="name-input"
-          maxLength="20"
-          innerRef={n => {
-            this.name = n;
-          }}
-          disabled={this.state.isNameNotEditable}
-          onBlur={this.handleInputBlur}
-        />
-
-        {this.props.account && (
-          <EditNameButton
-            type="button"
-            name="edit-name"
-            top="0"
-            onClick={this.handleEditNameClick}
-          />
-        )}
+        <span style={{ font: 'bolder 30px sans-serif', color: '#fff' }}>
+          {this.props.account.get('fullName')}
+        </span>
 
         <PostInput
           type="text"
@@ -69,7 +42,7 @@ export class PersonalInfo extends React.PureComponent {
           onBlur={this.handleInputBlur}
         />
 
-        {this.props.account && (
+        {this.props.auth.get('isLogin') && (
           <EditPostButton
             type="button"
             name="edit-post"
@@ -83,13 +56,23 @@ export class PersonalInfo extends React.PureComponent {
 }
 
 PersonalInfo.propTypes = {
-  account: PropTypes.object
+  account: PropTypes.instanceOf(Map),
+  auth: PropTypes.instanceOf(Map)
+};
+
+PersonalInfo.defaultProps = {
+  account: new Map(),
+  auth: new Map()
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    account: state.get('account'),
+    auth: state.get('auth')
   };
 }
 
-export default connect(mapStateToProps, null)(PersonalInfo);
+export default connect(
+  mapStateToProps,
+  null
+)(PersonalInfo);

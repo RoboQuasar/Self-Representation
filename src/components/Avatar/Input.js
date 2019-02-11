@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const EditAvatarInput = styled.input`
+const Input = styled.input`
   display: none;
   opacity: 0;
 `;
 
-export default EditAvatarInput;
+export default Input;

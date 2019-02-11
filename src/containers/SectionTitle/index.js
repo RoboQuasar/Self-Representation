@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { COLORS } from 'styles';
+import { Map } from 'immutable';
 
 import EditTitleButton from 'components/EditButton';
 
@@ -30,16 +31,16 @@ export class SectionTitle extends React.PureComponent {
           type="text"
           defaultValue={this.props.defaultTitleValue}
           name={this.props.titleName}
-          maxLength={this.props.maxLengthValue || '30'}
+          maxLength={this.props.maxLength}
           innerRef={t => {
             this.title = t;
           }}
           disabled={this.state.isTitleNotEditable}
           onBlur={this.handleInputBlur}
-          isSubTitle={this.props.subTitle}
+          isSubtitle={this.props.isSubtitle}
         />
 
-        {this.props.account && (
+        {this.props.auth.get('isLogin') && (
           <EditTitleButton
             type="button"
             name="edit-title"
@@ -55,13 +56,24 @@ export class SectionTitle extends React.PureComponent {
 }
 
 SectionTitle.propTypes = {
-  account: PropTypes.object
+  auth: PropTypes.instanceOf(Map),
+  subTitle: PropTypes.bool,
+  maxLength: PropTypes.number
+};
+
+SectionTitle.defaultProps = {
+  auth: Map(),
+  subTitle: false,
+  maxLength: 30
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.get('auth')
   };
 }
 
-export default connect(mapStateToProps, null)(SectionTitle);
+export default connect(
+  mapStateToProps,
+  null
+)(SectionTitle);

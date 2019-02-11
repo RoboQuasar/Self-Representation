@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 import DeleteItemButton from 'components/DeleteButton';
 
@@ -38,30 +39,37 @@ export class SkillItem extends React.PureComponent {
           )}
         </SkillItemFigure>
 
-        {this.props.account &&
-          this.props.type !== 'NewSkill' && (
-            <DeleteItemButton
-              type="button"
-              name="delete-skill"
-              top="0"
-              right="1.5%"
-              onClick={this.handleDeleteItemClick}
-            />
-          )}
+        {this.props.auth.get('isLogin') && this.props.type !== 'NewSkill' && (
+          <DeleteItemButton
+            type="button"
+            name="delete-skill"
+            top="0"
+            right="1.5%"
+            onClick={this.handleDeleteItemClick}
+          />
+        )}
       </SkillItemWrapper>
     );
   }
 }
 
 SkillItem.propTypes = {
-  account: PropTypes.object,
+  account: PropTypes.instanceOf(Map),
   type: PropTypes.string
+};
+
+SkillItem.defaultProps = {
+  account: new Map(),
+  type: ''
 };
 
 export function mapStateToProps(state) {
   return {
-    account: state.account
+    auth: state.get('auth')
   };
 }
 
-export default connect(mapStateToProps, null)(SkillItem);
+export default connect(
+  mapStateToProps,
+  null
+)(SkillItem);

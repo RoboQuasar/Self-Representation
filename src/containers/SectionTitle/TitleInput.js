@@ -6,7 +6,7 @@ const TitleInput = styled.input`
   padding: 0;
   margin: 0 0 10px;
   ${props =>
-    props.isSubTitle
+    props.isSubtitle
       ? `font-weight: 500;
        font-size: 22px;`
       : `font-weight: bolder;
