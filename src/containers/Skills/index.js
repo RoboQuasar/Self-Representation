@@ -20,20 +20,45 @@ export class Skills extends React.PureComponent {
   state = {
     skillItems: fromJS([
       {
-        imageSrc: 'html5_logo.png',
+        imageSrc: 'react_logo.png',
         type: 'SkillItem'
       },
       {
-        imageSrc: 'css3_logo.png',
+        imageSrc: 'Redux_logo.png',
         type: 'SkillItem'
+      },
+      {
+        imageSrc: 'webpack_logo.png',
+        description: 'webpack',
+        type: 'SkillItem'
+      },
+      {
+        imageSrc: 'pixi_logo.png',
+        type: 'SkillItem'
+      },
+      {
+        imageSrc: 'sass_logo.png',
+        type: 'SkillItem'
+      },
+      {
+        name: 'ответственность',
+        type: 'CustomSkill'
+      },
+      {
+        name: 'коммуникабельность',
+        type: 'CustomSkill'
       },
       {
         name: 'пунктуальность',
         type: 'CustomSkill'
       },
       {
-        name: 'телепортация',
-        type: 'CustomSkill'
+        imageSrc: 'html5_logo.png',
+        type: 'NewSkill'
+      },
+      {
+        imageSrc: 'css3_logo.png',
+        type: 'NewSkill'
       },
       {
         imageSrc: 'js-logo.png',
@@ -47,6 +72,10 @@ export class Skills extends React.PureComponent {
       {
         imageSrc: 'wordpress_logo.png',
         description: 'WordPress',
+        type: 'NewSkill'
+      },
+      {
+        imageSrc: 'webgl_logo.png',
         type: 'NewSkill'
       },
       {

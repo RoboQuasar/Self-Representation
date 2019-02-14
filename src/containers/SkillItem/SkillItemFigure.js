@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const SkillItemFigure = styled.figure`
   position: relative;
-  margin: 20px;
+  padding: 10px;
+  margin: 0;
 
   ${props =>
     props.clickable &&
