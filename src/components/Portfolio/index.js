@@ -12,12 +12,13 @@ import DemonstrationLink from './DemonstrationLink';
 
 export class Portfolio extends React.PureComponent {
   state = {
-    defaultResumeTextValue:
-      "Адаптирован под любые размеры экранов, а также под большинство современных браузеров. Является примером 'резиновой' верстки и разработан на основе HTML5, CSS3, JavaScript, с применением JQuery, препроцессора LESS и элементов Bootstrap 3.",
-    defaultBootstrapTextValue:
-      'Полностью адаптивная, кроссбраузерная страница сайта для размещения портфолио с минималистичным дизайном. Разработана на основе Bootstrap 3.',
-    defaultBusinessTextValue:
-      'Готовая и полностью настраиваемая WordPress-тема для сайта компании. Фиксированная страница на основе чистых HTML5 и CSS3, адаптированных под популярную CMS.',
+    defaultResumeTextValue: `Адаптирован под любые размеры экранов, а также под большинство современных браузеров.
+      Является примером 'резиновой' верстки и разработан на основе HTML5, CSS3,
+      с применением JQuery, препроцессора LESS и элементов Bootstrap 3.`,
+    defaultBootstrapTextValue: `Полностью адаптивная, кроссбраузерная страница сайта для размещения портфолио с минималистичным дизайном.
+      Разработана на основе Bootstrap 3.`,
+    defaultBusinessTextValue: `Готовая и полностью настраиваемая WordPress-тема для сайта компании.
+      Фиксированная страница на основе чистых HTML5 и CSS3, адаптированных под популярную CMS.`,
     isResumeNotEditable: true,
     isBootstrapNotEditable: true,
     isBusinessNotEditable: true
@@ -39,6 +40,7 @@ export class Portfolio extends React.PureComponent {
 
   handleTextAreaBlur = e => {
     if (e.target.value === '') e.target.value = e.target.defaultValue;
+
     this.setState({
       isResumeNotEditable: true,
       isBootstrapNotEditable: true,
@@ -50,14 +52,14 @@ export class Portfolio extends React.PureComponent {
     return (
       <PortfolioWrapper>
         <SectionTitle
-          defaultTitleValue="Портфолио"
+          defaultTitleValue="Пример портфолио"
           titleName="portfolio-title"
           maxLengthValue={50}
         />
 
         <PortfolioItem>
           <a
-            href="http://roboquasar.pe.hu/"
+            href="/"
             aria-label="roboquasar project link"
             target="_blank"
             rel="noopener noreferrer"
@@ -85,7 +87,7 @@ export class Portfolio extends React.PureComponent {
             />
 
             <DemonstrationLink
-              href="http://roboquasar.pe.hu/"
+              href="/"
               aria-label="roboquasar project link"
               target="_blank"
               rel="noopener noreferrer"
@@ -106,7 +108,7 @@ export class Portfolio extends React.PureComponent {
           </a>
           <Description>
             <Title
-              defaultTitleValue="Сайт-портфолио"
+              defaultTitleValue="Фото-портфолио"
               name="bootstrap-item-title"
               editButtonClick={this.handleEditBootstrapClick}
               isSubtitle
