@@ -10,7 +10,7 @@ export class AboutPerson extends React.PureComponent {
   state = {
     isTextAreaNotEditable: true,
     aboutPersonValue: `Всем привет! Я активный и увлечённый front-end разработчик.
-      Болею перфекционизмом, верю в своё чувство прекрасного :)
+      Болею перфекционизмом, верю в\xa0своё чувство прекрасного :)
       Люблю интересные и сложные задачи от который кипит мозг!`
   };
 

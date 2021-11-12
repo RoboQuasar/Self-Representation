@@ -28,6 +28,15 @@ export class Skills extends React.PureComponent {
         type: 'SkillItem'
       },
       {
+        imageSrc: 'TypeScript_logo.png',
+        type: 'SkillItem'
+      },
+      {
+        imageSrc: 'Mobx_logo.png',
+        description: 'Mobx',
+        type: 'SkillItem'
+      },
+      {
         imageSrc: 'webpack_logo.png',
         description: 'webpack',
         type: 'SkillItem'
@@ -140,7 +149,7 @@ export class Skills extends React.PureComponent {
             (item, index) =>
               item.get('type') !== 'NewSkill' && (
                 <SkillItem
-                  key={index}
+                  key={`${item.get('name') || item.get('imageSrc')}_${index}`}
                   imageSrc={item.get('imageSrc')}
                   deleteSkillItem={this.handleDeleteSkillItem}
                   description={item.get('description')}
@@ -168,7 +177,7 @@ export class Skills extends React.PureComponent {
               (item, index) =>
                 item.get('type') === 'NewSkill' && (
                   <SkillItem
-                    key={index}
+                    key={`${item.get('name') || item.get('imageSrc')}_${index}`}
                     imageSrc={item.get('imageSrc')}
                     addNewSkill={this.handleAddNewSkill}
                     description={item.get('description')}
